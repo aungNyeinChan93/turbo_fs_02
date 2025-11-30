@@ -1,5 +1,5 @@
-
-
+@import "tailwindcss";
+/* 
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -49,4 +49,4 @@ a {
   .imgDark {
     display: unset;
   }
-}
+} */

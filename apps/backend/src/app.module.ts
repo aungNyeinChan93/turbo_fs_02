@@ -11,6 +11,7 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { APP_GUARD } from '@nestjs/core';
+import { SessionModule } from './session/session.module';
 
 @Module({
   controllers: [AppController],
@@ -29,6 +30,7 @@ import { APP_GUARD } from '@nestjs/core';
     AM,
     AuthModule.forRootAsync({
       imports: [DrizzleModule, ConfigModule],
+      inject: ['DRIZZLE', ConfigService],
       useFactory: (db: NodePgDatabase, configService: ConfigService) => ({
         auth: betterAuth({
           database: drizzleAdapter(db, {
@@ -42,8 +44,8 @@ import { APP_GUARD } from '@nestjs/core';
           ],
         }),
       }),
-      inject: ['DRIZZLE', ConfigService]
     }),
+    SessionModule,
 
   ],
 })

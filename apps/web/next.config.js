@@ -2,14 +2,20 @@
 
 
 const nextConfig = {
-    rewrites: () => {
-        return [
-            {
-                source: '/api/:path*',
-                destination: `http://localhost:3002/api/:path*`
-            }
-        ]
-    }
+    async rewrites() {
+        return {
+            beforeFiles: [
+                {
+                    source: "/api/auth/:path*",
+                    destination: "http://localhost:3002/api/auth/:path*",
+                },
+                {
+                    source: "/api/:path*",
+                    destination: "http://localhost:3002/:path*",
+                },
+            ],
+        };
+    },
 };
 
 export default nextConfig;

@@ -15,7 +15,7 @@ import * as schema from './db/schema'
                     connectionString: configService.getOrThrow<string>('DATABASE_URL')
                 });
 
-                const db = drizzle({ client: pool, schema })
+                const db = drizzle({ client: pool, schema, logger: true })
                 return db;
             },
             inject: [ConfigService]

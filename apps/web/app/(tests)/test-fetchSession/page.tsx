@@ -6,9 +6,7 @@ export async function fetchSession() {
   const response = await fetch("/api/session", { credentials: "include" });
   const result = await response.json();
   if (!response.ok) throw new Error(JSON.stringify(result));
-  console.log({ result });
-  alert(JSON.stringify(result));
-  //   return result;
+  return result;
 }
 
 const TestFetchSession = () => {
